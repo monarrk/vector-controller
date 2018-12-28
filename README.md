@@ -1,6 +1,6 @@
 # Vector Controller
 
-Vector is a WIP program for Anki Vector that uses a gamepad and the inputs library for python.
+Vector Controller is a WIP program for Anki Vector that uses a gamepad and the inputs library for python.
 
 ### Current Controls
 
