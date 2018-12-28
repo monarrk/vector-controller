@@ -6,20 +6,6 @@ import time
 import utils
 import asyncio
 
-def smack(robot):
-    print("SMASHING\n")
-    robot.behavior.set_lift_height(1, 0, 0, 0, 0)
-    robot.behavior.set_lift_height(0, 0, 0, 0, 0)
-
-def lift(dire, robot):
-    print(f"MOVING LIFT {dire}\n")
-    if dire == "UP":
-        robot.behavior.set_lift_height(1, 0, 0, 0, 0)
-    elif dire == "DOWN":
-        robot.behavior.set_lift_height(0, 0, 0, 0, 0)
-    else:
-        print(f"[lift] ERR, {dire} IS NOT A VALID DIRECTION\n\n")
-
 async def main():
     args = anki_vector.util.parse_command_args()
     with anki_vector.Robot(args.serial) as robot:
@@ -29,13 +15,13 @@ async def main():
             for event in get_gamepad():
                 if event.code == "BTN_SOUTH" and event.state == 1: # A Button
                     print("[inputs]", event.ev_type, event.code, event.state)
-                    smack(robot)
+                    utils.smack(robot)
                 if event.code == "ABS_HAT0Y" and event.state == -1: # DPAD UP
                     print("[inputs]", event.ev_type, event.code, event.state)
-                    lift("UP", robot)
+                    utils.lift("UP", robot)
                 elif event.code == "ABS_HAT0Y" and event.state == 1: # DPAD DOWN
                     print("[inputs]", event.ev_type, event.code, event.state)
-                    lift("DOWN", robot)
+                    utils.lift("DOWN", robot)
                 if event.code == "BTN_TR" and event.state == 1: # Right Button
                     print("[inputs]", event.ev_type, event.code, event.state)
                     print("FINDING CHARGER\n")
