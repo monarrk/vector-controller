@@ -2,6 +2,8 @@
 
 Vector Controller is a WIP program for Anki Vector that uses a gamepad and the inputs library for python.
 
+Vector Controller works with any gamepad connected to a computer. If you have the Vector SDK installed and set up, run `py main.py` and you're all set!
+
 ### Current Controls
 
 `[A Button/BTN_SOUTH]`: Move vector's lift up and then down quickly
