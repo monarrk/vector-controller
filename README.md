@@ -15,3 +15,5 @@ Vector Controller works with any gamepad connected to a computer. If you have th
 `[Left Joystick up/ABS_Y state <= +-3000]`: Move vector forward or backwards
 
 `[Right Joystick sideways/ABS_RX state <= +-3000]`: Turn vector 45 degrees
+
+`[Back button (on logitech controllers)/BTN_START state 1]`: Exit program
