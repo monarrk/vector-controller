@@ -39,23 +39,19 @@ async def main():
                     print("MOVING HEAD\n")
                     func.move_head(robot)
 
-                if event.code == "ABS_Y" and event.state >= 3000: # Drive forward
-                    print("[inputs]", event.ev_type, event.code, event.state)
-                    print("DRIVING STRAIGHT\n")
-                    robot.behavior.drive_straight(distance_mm(300), speed_mmps(200))
-                elif event.code == "ABS_Y" and event.state <= -3000: # Drive backwards
-                    print("[inputs]", event.ev_type, event.code, event.state)
-                    print("DRIVING BACK\n")
-                    robot.behavior.drive_straight(distance_mm(-300), speed_mmps(150))
+                if event.code == "ABS_Y":
+                    if event.state >= 3000 or event.state <= -3000: # drive
+                        print("[inputs]", event.ev_type, event.code, event.state)
+                        func.drive(event.state, robot)
+                    else:
+                        robot.motors.set_wheel_motors(0, 0)
 
-                if event.code == "ABS_RX" and event.state >= 3000: # Turn Right
-                    robot.behavior.turn_in_place(degrees(-45))
-                    print("[inputs]", event.ev_type, event.code, event.state)
-                    print("TURNING 90 DEGREES\n")
-                elif event.code == "ABS_RX" and event.state <= -3000: # Turn Left
-                    robot.behavior.turn_in_place(degrees(45))
-                    print("[inputs]", event.ev_type, event.code, event.state)
-                    print("TURNING -90 DEGREES\n")
+                if event.code == "ABS_RX": # Turn
+                    if event.state >= 3000 or event.state <= -3000:
+                        print("[inputs]", event.ev_type, event.code, event.state)
+                        func.turn(event.state, robot)
+                    else:
+                        robot.motors.set_wheel_motors(0, 0)
 
                 if event.code == "BTN_START" and event.state == 1: # Kill cmd
                     print("[inputs]", event.code, event.state)

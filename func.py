@@ -2,6 +2,7 @@ import anki_vector
 from anki_vector.util import degrees, distance_mm, speed_mmps
 from anki_vector.behavior import MIN_HEAD_ANGLE, MAX_HEAD_ANGLE
 from anki_vector.util import degrees
+from colorama import Fore, Back, Style, init
 
 def smack(robot):
     print("SMASHING\n")
@@ -26,3 +27,23 @@ def move_head(robot):
         robot.behavior.set_head_angle(MAX_HEAD_ANGLE)
     else:
         robot.behavior.set_head_angle(MIN_HEAD_ANGLE)
+
+def drive(dire, robot):
+    if dire > 0:
+        print("MOVING FORWARD\n")
+        robot.motors.set_wheel_motors(dire/20, dire/20)
+    elif dire < 0:
+        print("MOVING BACKWARDS\n")
+        robot.motors.set_wheel_motors(dire/22, dire/22)
+    else:
+        print("That's weird, you have a zero value")
+    
+def turn(dire, robot):
+    if dire > 0:
+        print("TURNING RIGHT\n")
+        robot.motors.set_wheel_motors(dire/20, -dire/20)
+    elif dire < 0:
+        print("TURNING LEFT\n")
+        robot.motors.set_wheel_motors(dire/20, -dire/20)
+    else:
+        print(Back.RED + "That's weird, you have a zero value")
