@@ -12,9 +12,9 @@ def smack(robot):
 def lift(dire, robot):
     print(f"MOVING LIFT {dire}\n")
     if dire == "UP":
-        robot.behavior.set_lift_height(1, 0, 0, 0, 0)
+        robot.motors.set_lift_motor(2.0)
     elif dire == "DOWN":
-        robot.behavior.set_lift_height(0, 0, 0, 0, 0)
+        robot.motors.set_lift_motor(-.0)
     else:
         print(f"[lift] ERR, {dire} IS NOT A VALID DIRECTION\n\n")
 

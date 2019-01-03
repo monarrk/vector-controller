@@ -27,6 +27,8 @@ async def main():
                         func.lift("UP", robot)
                     elif event.state == 1: # DOWN
                         func.lift("DOWN", robot)
+                    else:
+                        robot.motors.set_lift_motor(0)
 
                 if event.code == "BTN_TR" and event.state == 1: # Right Button
                     print("[inputs]", event.ev_type, event.code, event.state)
